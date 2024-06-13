@@ -5,6 +5,8 @@
 class LampsState {
 
     public:
+         
+    private:
         // Structs for lamps state
         struct Lamps {
             bool reverse        {false};
@@ -20,9 +22,9 @@ class LampsState {
             bool leftIndcator   {false};
             bool rightIndcator  {false};
             bool fuelLow        {false};
-            bool _dashboardLightningIsEnabled {false};
-            int8_t _dashboardLightningBrightnessLevel;
+            bool dashboardLightningIsEnabled {false};
         };
-        // TODO: add union, add get methods 
-    private:
+        // TODO: add union, add get methods
+        struct Lamps _lamps;
+        int8_t _dashboardLightningBrightnessLevel;
 };

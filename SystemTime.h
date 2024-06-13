@@ -5,9 +5,11 @@
 class TimeState {
 
     public:
+
+    private:
         // Structs for car state
         struct SystemTime {
-            uint32_t _secAfterStart;                                          // Секунд после запуска
+            uint32_t secAfterStart;                                          // Секунд после запуска
             int8_t year         {2000}; // TODO: change to byte value, add getter/seter to convert
             int8_t month        {1};
             int8_t day          {1};
@@ -16,5 +18,6 @@ class TimeState {
             bool   is24hFormat  {true};
         };
         // TODO: refactor
-    private:
+        struct SystemTime _systemTime;
+        
 };

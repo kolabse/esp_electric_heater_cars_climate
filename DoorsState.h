@@ -5,6 +5,8 @@
 class DoorsState {
 
     public:
+
+    private:
         // Structs for doors state
         struct Doors {
             bool frontLeft  {false};
@@ -14,5 +16,6 @@ class DoorsState {
             bool trunk      {false};
         };
         // TODO: add union, add get methods
-    private:
+        struct Doors _doors;
+        
 };
