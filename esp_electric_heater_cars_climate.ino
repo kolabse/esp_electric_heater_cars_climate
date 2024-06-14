@@ -32,7 +32,7 @@ void setup() {
 void loop() {
 
     if (mcp2515.readMessage(&canMsg) == MCP2515::ERROR_OK) {
-        adapter->decode((uint32_t)canMsg.can_id, (uint8_t)canMsg.can_dlc, (uint8_t)&canMsg.data);
+        adapter->decode((uint32_t)canMsg.can_id, (uint8_t)canMsg.can_dlc, (uint8_t*)canMsg.data);
     }
 
 }
