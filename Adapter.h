@@ -5,7 +5,6 @@
 
 class Adapter {
     CanAdapter *canAdapter;
-    CarState *carState;
     
     public:
         Adapter(CanAdapter *iCanAdapter) :canAdapter(iCanAdapter){}

@@ -10,5 +10,5 @@ void Can2004Adapter::encode(uint32_t id)
 
 void Can2004Adapter::setCarState(CarState *state)
 {
-    //carState = state;
+    carState = state;
 }

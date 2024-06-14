@@ -13,11 +13,10 @@
 #include "Can2004Adapter.h"
 
 CarState carState;
-Adapter adapter = Adapter(new Can2004Adapter());
-//adapter.setCarState(carState);
+Adapter *adapter = new Adapter(new Can2004Adapter());
 
 void setup() {
-    
+   adapter->setCarState(&carState); 
 }
 
 void loop() {
