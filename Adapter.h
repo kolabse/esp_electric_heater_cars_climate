@@ -11,8 +11,8 @@ class Adapter {
         void decode(uint32_t id, uint8_t dlc, uint8_t data[8]) {
             canAdapter->decode(id, dlc, data);
         }
-        void encode(uint32_t id) {
-            canAdapter->encode(id);
+        void encode(uint32_t id, uint8_t &data) {
+            canAdapter->encode(id, data);
         }
 
         void setCarState(CarState *carState) {

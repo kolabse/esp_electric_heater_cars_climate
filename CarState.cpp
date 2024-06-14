@@ -2,50 +2,90 @@
 
 void CarState::setBatteryVoltage(float batteryVoltage)
 {
-    _batteryVoltage = ((uint8_t)(batteryVoltage * 100) >> 10);
+    this->_batteryVoltage = ((uint8_t)(batteryVoltage * 100) >> 10);
 }
 
 float CarState::getBatteryVoltage()
 {
-    return _batteryVoltage / 10;
+    return this->_batteryVoltage / 10;
+}
+
+void CarState::setEconomyMode(bool economyMode)
+{
+    this->_economyMode = economyMode;
+}
+
+bool CarState::isEconomyMode()
+{
+    return this->_economyMode;
 }
 
 void CarState::setEngineRPM(uint8_t engineRPM)
 {
-    _engineRPM = engineRPM;
+    this->_engineRPM = engineRPM;
 }
 
 uint8_t CarState::getEngineRPM()
 {
-    return _engineRPM;
+    return this->_engineRPM;
 }
 
 void CarState::setCarSpeed(uint8_t carSpeed)
 {
-    _carSpeed = carSpeed;
+    this->_carSpeed = carSpeed;
 }
 
 uint8_t CarState::getCarSpeed()
 {
-    return _carSpeed;
+    return this->_carSpeed;
 }
 
 void CarState::setCoolantTemp(int8_t coolantTemp)
 {
-    _coolantTemp = coolantTemp;
+    this->_coolantTemp = coolantTemp;
 }
 
 int8_t CarState::getCoolantTemp()
 {
-    return _coolantTemp;
+    return this->_coolantTemp;
+}
+
+void CarState::setDashboardBrightness(uint8_t brightness)
+{
+    this->_dashboardBrightness = brightness;
+}
+
+uint8_t CarState::getDashboardBrightness()
+{
+    return this->_dashboardBrightness;
+}
+
+void CarState::setFuelConsumptionCounter(uint8_t fuelConsumption)
+{
+    this->_fuelConsumptionCounter = fuelConsumption;
+}
+
+uint8_t CarState::getFuelConsumptionCounter()
+{
+    return this->_fuelConsumptionCounter;
 }
 
 void CarState::setIgnitionMode(CarState::IgnitionMode ignitionMode)
 {
-    _ignitionMode = ignitionMode;
+    this->_ignitionMode = ignitionMode;
 }
 
 CarState::IgnitionMode CarState::getIgnitionMode()
 {
-    return _ignitionMode;
+    return this->_ignitionMode;
+}
+
+void CarState::setOdometerFromStartValue(uint8_t odometerFromStart)
+{
+    this->_odometerFromStartValue = odometerFromStart;
+}
+
+uint8_t CarState::getOdometerFromStartValue()
+{
+    return this->_odometerFromStartValue;
 }

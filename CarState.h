@@ -16,17 +16,29 @@ class CarState {
         void  setBatteryVoltage(float batteryVoltage);
         float getBatteryVoltage();
 
-        void    setEngineRPM(uint8_t engineRPM);
-        uint8_t getEngineRPM();
-
         void    setCarSpeed(uint8_t carSpeed);
         uint8_t getCarSpeed();
 
         void   setCoolantTemp(int8_t coolantTemp);
         int8_t getCoolantTemp();
 
+        void    setDashboardBrightness(uint8_t brightness);
+        uint8_t getDashboardBrightness();
+
+        void setEconomyMode(bool economyMode);
+        bool isEconomyMode();
+
+        void    setEngineRPM(uint8_t engineRPM);
+        uint8_t getEngineRPM();
+
+        void    setFuelConsumptionCounter(uint8_t fuelConsumption);
+        uint8_t getFuelConsumptionCounter();
+
         void         setIgnitionMode(IgnitionMode ignitionMode);
         IgnitionMode getIgnitionMode();
+
+        void    setOdometerFromStartValue(uint8_t odometerFromStart);
+        uint8_t getOdometerFromStartValue();
 
 
     private:
@@ -56,10 +68,11 @@ class CarState {
         uint8_t _batteryVoltage;                             // Напряжение бортовой сети
         uint8_t _engineRPM;                                  // Обороты двигателя
         uint8_t _carSpeed;                                   // Скорость автомобиля
+        uint8_t _fuelConsumptionCounter;                     // Счетчик расхода топлива
         int8_t _coolantTemp;                                 // Температура охлаждающей жидкости
         int8_t _odometerValue;
         int8_t _odometerFromStartValue;
-        bool _economyModeIsEnabled {false};
+        bool _economyMode {false};
         IgnitionMode _ignitionMode;                           // OFF|ACC|ON|START
         // TODO: refactor
 
@@ -87,7 +100,7 @@ class CarState {
         };
         // TODO: add union, add get methods
         struct Lamps _lamps;
-        int8_t _dashboardLightningBrightnessLevel;
+        int8_t _dashboardBrightness;
 
         // Structs for car state
         struct SystemTime {

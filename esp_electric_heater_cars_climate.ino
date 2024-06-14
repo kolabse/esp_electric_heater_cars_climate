@@ -12,13 +12,27 @@
 #include "Adapter.h"
 #include "Can2004Adapter.h"
 
+
+struct can_frame canMsg;
+MCP2515 mcp2515(10);
+
 CarState carState;
 Adapter *adapter = new Adapter(new Can2004Adapter());
 
+
 void setup() {
-   adapter->setCarState(&carState); 
+
+   adapter->setCarState(&carState);
+
+   mcp2515.reset();
+   mcp2515.setBitrate(CAN_125KBPS);
+   mcp2515.setNormalMode();
 }
 
 void loop() {
+
+    if (mcp2515.readMessage(&canMsg) == MCP2515::ERROR_OK) {
+        adapter->decode((uint32_t)canMsg.can_id, (uint8_t)canMsg.can_dlc, (uint8_t)&canMsg.data);
+    }
 
 }
