@@ -7,10 +7,17 @@
  * @date 2024-06-03
 */
 
+#include <mcp2515.h>
 #include "CarState.h"
+#include "Adapter.h"
+#include "Can2004Adapter.h"
+
+CarState carState;
+Adapter adapter = Adapter(new Can2004Adapter());
+//adapter.setCarState(carState);
 
 void setup() {
-
+    
 }
 
 void loop() {
