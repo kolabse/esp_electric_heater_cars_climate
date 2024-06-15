@@ -64,7 +64,7 @@ void Can2004Adapter::decode(uint32_t id, uint8_t dlc, uint8_t data[8])
         carState->setLamp(CarState::Lamp::FUEL_LOW, bitRead(data[5], 0));
     }
     // 0x1D0
-    else if (id = 0x1D0) {
+    else if (id == 0x1D0) {
         carState->setClimateFanSpeed(data[2]);
         carState->setClimateAirDirection((CarState::ClmateAirDirection)((data[3] & 0b01110000) >> 4));
         carState->setClimateAirRecicling(bitRead(data[4], 2));
