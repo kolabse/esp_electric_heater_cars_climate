@@ -7,6 +7,15 @@ class CarState {
     public:
 
         typedef enum {
+            UP_WINDSHIELD = 0b001,
+            DOWN          = 0b010,
+            FRONT         = 0b011,
+            UP            = 0b100,
+            FRONT_DOWN    = 0b101,
+            UP_DOWN       = 0b110
+        } ClmateAirDirection;
+
+        typedef enum {
             BACK_LEFT   = 0,
             BACK_RIGHT  = 1,
             BONNET      = 2,
@@ -47,6 +56,24 @@ class CarState {
         void    setCarSpeed(uint8_t carSpeed);
         uint8_t getCarSpeed();
 
+        void               setClimateAirDirection(ClmateAirDirection airDirection);
+        ClmateAirDirection getClimateAirDirection();
+
+        void setClimateAirRecicling(bool enabled);
+        bool isClimateAirRecicling();
+
+        void    setClimateFanSpeed(uint8_t climateFanSpeed);
+        uint8_t getClimateFanSpeed();
+
+        void  setClimateLeftTemperature(float leftTemperature);
+        float getClimateLeftTemperature();
+
+        void  setClimateRightTemperature(float rightTemperature);
+        float getClimateRightTemperature();
+
+        void setClimateWindshieldBlowing(bool enabled);
+        bool isClimateWindshieldBlowing();
+
         void   setCoolantTemp(int8_t coolantTemp);
         int8_t getCoolantTemp();
 
@@ -84,9 +111,10 @@ class CarState {
     private:
 
         // Structs for climate state
-        int8_t _climateFanSpeed;                             // Выбранная скорость воздушного потока климатичсеской установки
-        int8_t _climateLeftTemperature;                      // Выбранная температура для левой зоны климатической установки
-        int8_t _climateRightTemperature;                     // Выбранная температура для правой зоны климатической установки
+        ClmateAirDirection _climateAirDirection;             // Направление воздушного потока климатической установки
+        float _climateLeftTemperature;                       // Выбранная температура для левой зоны климатической установки
+        float _climateRightTemperature;                      // Выбранная температура для правой зоны климатической установки
+        uint8_t _climateFanSpeed;                            // Выбранная скорость воздушного потока климатичсеской установки
         bool _recyclingAir {false};                          // Актиен режим рециркуляции на климатической установке
         bool _blowingWindshield {false};                     // Активен режим обдува ветрового стекла
         // TODO: refactor
@@ -108,7 +136,7 @@ class CarState {
         // TODO: refactor
 
         // Union for lamps state        
-        typedef union LampsState {
+        typedef union {
             uint16_t lampsData;
             struct Lamps {
                 int beamHigh           : 1;
@@ -128,12 +156,12 @@ class CarState {
                 int sidelight          : 1;
                 int reserve            : 1;
             } lamps;
-        };
+        } LampsState;
 
         LampsState _lampsState;
 
         // Union for doors state
-        typedef union DoorsState {
+        typedef union {
             uint8_t doorsData;
             struct Doors {
                 int backLeft   : 1;
@@ -145,7 +173,7 @@ class CarState {
                 int reserve    : 1;
                 int trunk      : 1;
             } doors;
-        };
+        } DoorsState;
         
         DoorsState _doorsState;
 

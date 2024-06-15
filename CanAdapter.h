@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CarState.h"
+#include "Helpers.h"
 
 class CanAdapter {
     

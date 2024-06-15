@@ -19,7 +19,6 @@ void Can2004Adapter::decode(uint32_t id, uint8_t dlc, uint8_t data[8])
                 carState->setIgnitionMode(CarState::IgnitionMode::START);
                 break;
         }
-
     } 
     // 0x0B6
     else if (id == 0x0B6) {
@@ -64,8 +63,31 @@ void Can2004Adapter::decode(uint32_t id, uint8_t dlc, uint8_t data[8])
         carState->setLamp(CarState::Lamp::LEFT_INDCATOR, bitRead(data[4], 6));
         carState->setLamp(CarState::Lamp::FUEL_LOW, bitRead(data[5], 0));
     }
+    // 0x1D0
+    else if (id = 0x1D0) {
+        carState->setClimateFanSpeed(data[2]);
+        carState->setClimateAirDirection((CarState::ClmateAirDirection)((data[3] & 0b01110000) >> 4));
+        carState->setClimateAirRecicling(bitRead(data[4], 2));
+        carState->setClimateLeftTemperature(mapClimateTemperature(data[6]));
+        carState->setClimateRightTemperature(mapClimateTemperature(data[7]));
+    }
 }
 
 void Can2004Adapter::encode(uint32_t id, uint8_t &data)
 {
+}
+
+float Can2004Adapter::mapClimateTemperature(float value)
+{
+    if (value == 0) {
+        return 0.0f;
+    } else if (value == 22) {
+        return 99.0f;
+    } else if (value < 6 ) {
+        return map(value, 2, 5, 15, 18);
+    } else if (value < 17) {
+        return map(value, 6, 16, 18.5, 23.5);
+    } else {
+        return map(value, 17, 20, 24, 27);
+    }
 }

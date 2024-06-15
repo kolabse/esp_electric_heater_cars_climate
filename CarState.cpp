@@ -40,6 +40,66 @@ uint8_t CarState::getCarSpeed()
     return this->_carSpeed;
 }
 
+void CarState::setClimateAirDirection(ClmateAirDirection airDirection)
+{
+    this->_climateAirDirection = airDirection;
+}
+
+CarState::ClmateAirDirection CarState::getClimateAirDirection()
+{
+    return this->_climateAirDirection;
+}
+
+void CarState::setClimateAirRecicling(bool enabled)
+{
+    this->_recyclingAir = enabled;
+}
+
+bool CarState::isClimateAirRecicling()
+{
+    return this->_recyclingAir;
+}
+
+void CarState::setClimateFanSpeed(uint8_t climateFanSpeed)
+{
+    this->_climateFanSpeed = climateFanSpeed;
+}
+
+uint8_t CarState::getClimateFanSpeed()
+{
+    return this->_climateFanSpeed;
+}
+
+void CarState::setClimateLeftTemperature(float leftTemperature)
+{
+    this->_climateLeftTemperature = leftTemperature;
+}
+
+float CarState::getClimateLeftTemperature()
+{
+    return this->_climateLeftTemperature;
+}
+
+void CarState::setClimateRightTemperature(float rightTemperature)
+{
+    this->_climateRightTemperature = rightTemperature;
+}
+
+float CarState::getClimateRightTemperature()
+{
+    return this->_climateRightTemperature;
+}
+
+void CarState::setClimateWindshieldBlowing(bool enabled)
+{
+    this->_blowingWindshield = enabled;
+}
+
+bool CarState::isClimateWindshieldBlowing()
+{
+    return this->_blowingWindshield;
+}
+
 void CarState::setCoolantTemp(int8_t coolantTemp)
 {
     this->_coolantTemp = coolantTemp;
