@@ -8,17 +8,14 @@
 */
 
 #include <mcp2515.h>
-#include "CarState.h"
-#include "Adapter.h"
 #include "Can2004Adapter.h"
-
+#include "Adapter.h"
 
 struct can_frame canMsg;
 MCP2515 mcp2515(10);
 
 CarState carState;
 Adapter *adapter = new Adapter(new Can2004Adapter());
-
 
 void setup() {
 
