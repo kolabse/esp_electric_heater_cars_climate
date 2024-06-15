@@ -43,7 +43,7 @@ class CarState {
             FUEL_LOW            = 7,
             LEFT_INDCATOR       = 8,
             LEFT_TURN           = 9,
-            PARKING_BRAKE_LIGHT = 10,
+            PARKING_BRAKE       = 10,
             REVERSE             = 11,
             RIGHT_INDCATOR      = 12,
             RIGHT_TURN          = 13,

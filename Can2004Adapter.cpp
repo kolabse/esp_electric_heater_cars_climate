@@ -45,23 +45,23 @@ void Can2004Adapter::decode(uint32_t id, uint8_t dlc, uint8_t data[8])
         carState->setCoolantTemp(data[1] - 39);
         carState->setOdometerValue((data[2] << 16) + (data[3] << 8) + (data[4]));
         carState->setOutdoorTemp(round(data[6] / 2.0 - 39.5));
-        carState->setLamp(CarState::Lamp::REVERSE, bitRead(data[7], 0));
+        carState->setLamp(CarState::Lamp::REVERSE,    bitRead(data[7], 0));
         carState->setLamp(CarState::Lamp::RIGHT_TURN, bitRead(data[7], 6));
-        carState->setLamp(CarState::Lamp::LEFT_TURN, bitRead(data[7], 7));
+        carState->setLamp(CarState::Lamp::LEFT_TURN,  bitRead(data[7], 7));
     }
     // 0x128
     else if (id == 0x128) {
-        carState->setLamp(CarState::Lamp::DRIVER_BELT, bitRead(data[0], 1));
-        carState->setLamp(CarState::Lamp::PARKING_BRAKE_LIGHT, bitRead(data[0], 2));
-        carState->setLamp(CarState::Lamp::DOORS, bitRead(data[1], 3));
-        carState->setLamp(CarState::Lamp::SIDE_LIGHT, bitRead(data[4], 0));
-        carState->setLamp(CarState::Lamp::BEAM_LOW, bitRead(data[4], 1));
-        carState->setLamp(CarState::Lamp::BEAM_HIGH, bitRead(data[4], 2));
-        carState->setLamp(CarState::Lamp::FOG_FRONT, bitRead(data[4], 3));
-        carState->setLamp(CarState::Lamp::FOG_REAR, bitRead(data[4], 4));
+        carState->setLamp(CarState::Lamp::DRIVER_BELT,    bitRead(data[0], 1));
+        carState->setLamp(CarState::Lamp::PARKING_BRAKE,  bitRead(data[0], 2));
+        carState->setLamp(CarState::Lamp::DOORS,          bitRead(data[1], 3));
+        carState->setLamp(CarState::Lamp::SIDE_LIGHT,     bitRead(data[4], 0));
+        carState->setLamp(CarState::Lamp::BEAM_LOW,       bitRead(data[4], 1));
+        carState->setLamp(CarState::Lamp::BEAM_HIGH,      bitRead(data[4], 2));
+        carState->setLamp(CarState::Lamp::FOG_FRONT,      bitRead(data[4], 3));
+        carState->setLamp(CarState::Lamp::FOG_REAR,       bitRead(data[4], 4));
         carState->setLamp(CarState::Lamp::RIGHT_INDCATOR, bitRead(data[4], 5));
-        carState->setLamp(CarState::Lamp::LEFT_INDCATOR, bitRead(data[4], 6));
-        carState->setLamp(CarState::Lamp::FUEL_LOW, bitRead(data[5], 0));
+        carState->setLamp(CarState::Lamp::LEFT_INDCATOR,  bitRead(data[4], 6));
+        carState->setLamp(CarState::Lamp::FUEL_LOW,       bitRead(data[5], 0));
     }
     // 0x1D0
     else if (id == 0x1D0) {
@@ -70,6 +70,14 @@ void Can2004Adapter::decode(uint32_t id, uint8_t dlc, uint8_t data[8])
         carState->setClimateAirRecicling(bitRead(data[4], 2));
         carState->setClimateLeftTemperature(mapClimateTemperature(data[6]));
         carState->setClimateRightTemperature(mapClimateTemperature(data[7]));
+    }
+    // 0x220
+    else if (id == 0x220) {
+        carState->setDoor(CarState::Door::FRONT_LEFT,  bitRead(data[0], 0));
+        carState->setDoor(CarState::Door::FRONT_RIGHT, bitRead(data[0], 1));
+        carState->setDoor(CarState::Door::BACK_LEFT,   bitRead(data[0], 2));
+        carState->setDoor(CarState::Door::BACK_RIGHT,  bitRead(data[0], 3));
+        carState->setDoor(CarState::Door::TRUNK,       bitRead(data[0], 4));
     }
 }
 
